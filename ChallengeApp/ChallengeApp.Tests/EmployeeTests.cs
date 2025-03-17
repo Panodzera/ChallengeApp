@@ -3,53 +3,45 @@ namespace ChallengeApp.Tests
     public class Tests
     {
         [Test]
-        public void WhenEmpCollectScores_ShouldCorrectResult()
+        public void MinStatistics()
         {
             //arrange
-            var employee = new Employee("John", "Grey", 40);
-            employee.AddScore(7);
-            employee.AddScore(8);
+            var employee = new Employee("Adam", "Kamizelich");
+            employee.AddGrade(2);
+            employee.AddGrade(2);
+            employee.AddGrade(6);
             //act
-            var result = employee.Result;
+            var statistics = employee.GetStatistics();
             //assert
-            Assert.AreEqual(15, result);
+            Assert.AreEqual(statistics.Min, 2);
         }
+
         [Test]
-        public void WhenEmpCollectAllScores_ShouldCorrectResult()
+        public void MaxStatistics()
         {
             //arrange
-            var employee = new Employee("John", "Grey", 40);
-            employee.AddScore(9);
-            employee.AddScore(-4);
+            var employee = new Employee("Adam", "Kamizelich");
+            employee.AddGrade(2);
+            employee.AddGrade(2);
+            employee.AddGrade(6);
             //act
-            var result = employee.Result;
+            var statistics = employee.GetStatistics();
             //assert
-            Assert.AreEqual(5, result);
+            Assert.AreEqual(statistics.Max, 6);
         }
+
         [Test]
-        public void WhenEmpCollectPenalty_ShouldCorrectResult()
+        public void AverageStatistics()
         {
             //arrange
-            var employee = new Employee("John", "Grey", 40);
-            employee.AddScore(-3);
-            employee.AddScore(-2);
+            var employee = new Employee("Adam", "Kamizelich");
+            employee.AddGrade(2);
+            employee.AddGrade(2);
+            employee.AddGrade(6);
             //act
-            var result = employee.Result;
+            var statistics = employee.GetStatistics();
             //assert
-            Assert.AreEqual(-5, result);
-        }
-        [Test]
-        public void WhenEmpCollectZero_ShouldCorrectResult()
-        {
-            //arrange
-            var employee = new Employee("John", "Grey", 40);
-            employee.AddScore(4);
-            employee.AddScore(4);
-            employee.AddScore(-8);
-            //act
-            var result = employee.Result;
-            //assert
-            Assert.AreEqual(0, result);
+            Assert.AreEqual(statistics.Average, 3,33f);
         }
     }
 }
